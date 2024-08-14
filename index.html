@@ -4,143 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ze4ever</title>
-    <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        header {
-            text-align: center;
-            margin-bottom: 0px;
-        }
-        h1 {
-            color: #fdc210;
-            font-size: 1.5em;
-            text-align: center;
-        }
-        h2 {
-            color: #333;
-            font-size: 1em;
-            border-bottom: 1px solid #fdc210; /* Substituí 'dashed' por 'solid' */
-            padding-bottom: 2px;
-            text-align: left;
-        }
-        p {
-            line-height: 1.6;
-            margin-bottom: 1em;
-        }
-        footer {
-            text-align: center;
-            font-size: 0.8em;
-            color: #777;
-            margin-top: 20px;
-        }
-        .nav-buttons a {
-            text-decoration: none;
-            color: #fff;
-            background-color: #2f8aeb;
-            padding: 3px 30px; /* Aumentar a largura do padding para melhorar o espaçamento */
-            border-radius: 0px;
-            margin: 0 10px;
-            font-size: 1em;
-            font-weight: bold; /* Adiciona negrito ao texto */
-            transition: background-color 0.3s;
-        }
-        .nav-buttons a:hover {
-            background-color: #000000;
-        }
-        .gallery img {
-            max-width: 10%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-        .diary-entry {
-            display: flex;
-            align-items: center;
-            border-left: 3px solid #fdc210;
-            padding-left: 10px;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-            border-radius: 0px;
-        }
-        .diary-entry img {
-            width: 80px; /* Tamanho da foto */
-            height: auto;
-            border-radius: 5px;
-            margin-left: 10px;
-        }
-        .diary-entry-content {
-            flex: 1;
-        }
-        .diary-entry h3 {
-            margin: 0;
-            color: #333;
-        }
-        .diary-entry a {
-            color: #2f8aeb;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .diary-entry a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
+        <!-- Cabeçalho do site -->
         <header>
             <h1>Hello World</h1>
-            <h2>Also Know as Hello Bitcoin</h2>
-            <div class="nav-buttons">
-                <a href="index.html">Início</a>
-                <a href="sobre.html">Sobre Mim</a>
-                <a href="galeria.html">Galeria</a>
-                <a href="contacto.html">Contacto</a>
+            <h2>Also Known as Hello Bitcoin</h2>
+            <nav class="nav-buttons">
+                <!-- Links de navegação -->
+                <a href="index.html">Home</a>
+                <a href="sobre.html">Just Me</a>
+                <a href="galeria.html">Charts</a>
+                <a href="contacto.html">Social</a>
+            </nav>
         </header>
+
+        <!-- Seção de Introdução -->
         <section>
-            <p>Sou de Portugal, um lugar onde o sol brilha e o vinho é sempre uma boa ideia. Vim parar aqui porque, bem, decidi explorar um pouco mais, como se a internet fosse uma praia e eu estivesse a fazer surf em vez de trabalhar a sério.</p>
-            <p>Curto investimentos em criptomoedas – é como aquele amigo que está sempre a falar de um novo "negócio da China". E quando dizes que já estás cheio, ele aparece com a próxima "droga" mais pesada do mercado. No meu caso, é o DeFi. Se as criptos fossem drogas, o DeFi seria a equivalente ao "axise" com dependência máxima.</p>
-            <p>Criei este espaço para documentar coisas. É como se estivesses a ler uma noticia da CMTV, mas sem a parte das fake news.</p>
+            <p>Just a guy learning some code, and investing time and money in my favorite addiction.</p>
         </section>
+
+        <!-- Seção de Galeria -->
         <section class="gallery">
-            <h2>Galeria de Imagens</h2>
-            <img src="imagem1.jpg" alt="coisas">
-            <img src="imagem2.jpg" alt="coisas">
-            <img src="imagem3.jpg" alt="coisas">
+            <h2>Images</h2>
+            <div id="gallery-container"></div> <!-- Container para as imagens da galeria -->
         </section>
+
+        <!-- Seção do Diário -->
         <section class="diary">
-            <h2>Coisas acontecem por aqui</h2>
-            <div class="diary-entry">
-                <div class="diary-entry-content">
-                    <h3><a href="entrada1.html">13 de Agosto de 2024</a></h3>
-                    <p>Coisas serão escritas <a href="13082024.html">aqui</a>.</p>
-                </div>
-                <img src="imagem1.jpg" alt="coisas">
+            <h2>History</h2>
+            <!-- Controles para ordenar e pesquisar entradas do diário -->
+            <div class="controls">
+                <button onclick="sortDiary('desc')">Sort by Newest</button>
+                <button onclick="sortDiary('asc')">Sort by Oldest</button>
+                <input type="text" id="searchKeyword" placeholder="Search by keyword" onkeyup="searchDiary()">
             </div>
-            <div class="diary-entry">
-                <div class="diary-entry-content">
-                    <h3><a href="entrada2.html">10 de Agosto de 2024</a></h3>
-                    <p>É mais coisas <a href="10082024.html">aqui</a>.</p>
+            <div class="diary-section">
+                <div id="diary-entries" class="diary-entries">
+                    <!-- Entradas do diário -->
+                    <div class="diary-entry" data-date="2024-08-13" data-keywords="Things, 13">
+                        <div class="diary-entry-content">
+                            <h3><a href="13082024.html">August 13, 2024</a></h3>
+                            <p>Things <a href="13082024.html">:)</a></p>
+                        </div>
+                        <img src="imagem2.jpg" alt="coisas">
+                    </div>
+                    <!-- Repita o bloco acima para mais entradas do diário -->
+                    <div class="diary-entry" data-date="2024-08-20" data-keywords="Things, 20">
+                        <div class="diary-entry-content">
+                            <h3><a href="13082024.html">August 20, 2024</a></h3>
+                            <p>Things <a href="13082024.html">:)</a></p>
+                        </div>
+                        <img src="imagem2.jpg" alt="coisas">
+                    </div>
+                                        <!-- Repita o bloco acima para mais entradas do diário -->
+                                        <div class="diary-entry" data-date="2024-08-13" data-keywords="Things, 13">
+                                            <div class="diary-entry-content">
+                                                <h3><a href="13082024.html">August 13, 2024</a></h3>
+                                                <p>Things <a href="13082024.html">:)</a></p>
+                                            </div>
+                                            <img src="imagem2.jpg" alt="coisas">
+                                        </div>
+                    <!-- Repita o bloco acima para mais entradas do diário -->
+                    <div class="diary-entry" data-date="2024-08-13" data-keywords="Things, 13">
+                        <div class="diary-entry-content">
+                            <h3><a href="13082024.html">August 13, 2024</a></h3>
+                            <p>Things <a href="13082024.html">:)</a></p>
+                        </div>
+                        <img src="imagem2.jpg" alt="coisas">
+                    </div>
                 </div>
-                <img src="imagem3.jpg" alt="coisas">
             </div>
-            <!-- Adiciona mais entradas conforme necessário -->
         </section>
+        <!-- Botão para voltar ao início -->
+        <button id="backToTopBtn" onclick="scrollToTop()">
+            <img src="arrows.png" alt="Back to Top">
+        </button>
+        
+        <!-- Rodapé do site -->
         <footer>
             <p>&copy; 2024 Ze4ever. Todos os direitos reservados ao meu computador, que precisa de um descanso agora.</p>
         </footer>
     </div>
+
+    <!-- Link para o arquivo JavaScript externo -->
+    <script src="scripts.js"></script>
 </body>
 </html>
